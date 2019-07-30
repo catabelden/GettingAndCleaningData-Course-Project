@@ -1,0 +1,73 @@
+---
+title: "CodeBook.md"
+author: "Catharina"
+date: "30/7/2019"
+output: html_document
+---
+
+## Project Description
+This is my final project of the JHU Coursera course on "Getting and Cleaning Data". The purpose of this project was to demonstrate my ability to collect, work with, and clean a data set. The final product is a tidy set.
+
+##Study design and data processing
+
+###The data source
+Original data: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+Original description of the dataset: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+###Collection of the raw data
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained data set has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+###Notes on the original (raw) data 
+The dataset includes the following files:
+- 'README.txt'
+- 'features_info.txt': Shows information about the variables used on the feature vector.
+- 'features.txt': List of all features.
+- 'activity_labels.txt': Links the class labels with their activity name.
+- 'train/X_train.txt': Training set.
+- 'train/y_train.txt': Training labels.
+- 'test/X_test.txt': Test set.
+- 'test/y_test.txt': Test labels.
+
+The following files are available for the train and test data. Their descriptions are equivalent. 
+
+- 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+- 'train/Inertial Signals/total_acc_x_train.txt': The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'. Every row shows a 128 element vector. The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_train.txt' files for the Y and Z axis. 
+- 'train/Inertial Signals/body_acc_x_train.txt': The body acceleration signal obtained by subtracting the gravity from the total acceleration. 
+- 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
+
+##Creating the tidy datafile
+
+###Guide to create the tidy data file
+Description on how to create the tidy data file (1. download the data, ...)/
+1. I downloaded the zip file from the UCI Machine Learning repository at this link:    https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip .
+2. I set my working directory to this location.
+3. I created the R Script called run_analysis.R
+
+###Cleaning of the data
+0. Download the data.
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names.
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+For an explanation of the code used in the data processing see the [Readme.md](https://github.com/JorisSchut/Data-Science/blob/master/Cleaning/wk3/Readme.md) file accompanying this code book.
+
+###Transformations
+Several steps where taken to clean up the data. Specifically, replacing "()" in the features_wanted variable to "".
+
+###Variables:
+- activity_labels: Links the class labels with their activity name.
+        class: "data.table" "data.frame"
+        values: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+        levels: 1, 2, 3, 4, 5, 6
+- features: The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. 561-feature vector with time and frequency domain variables. 
+- features_step: searched for the features wanted in the features dataset.
+- features_wanted: obtained all the wanted features which contained mean and standar deviation.
+- training_set: dataset obtained from 70% of the volunteers.
+- training_labels: Train labels.
+- subject_test: Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.
+- test_set: dataset obtained from 30% of the volunteers.
+- test_labels: Test labels.
+- subject_test:  Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.
+- dataset: merges training and test sets to create one dataset.
